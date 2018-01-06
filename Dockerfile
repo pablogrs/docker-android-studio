@@ -40,8 +40,8 @@ RUN apt-get update && \
 RUN echo 'Downloading Android Studio' && \
     wget https://dl.google.com/dl/android/studio/ide-zips/3.0.1.0/android-studio-ide-171.4443003-linux.zip -O /tmp/android-studio.zip -q && \
     echo 'Installing Android Studio' && \
-    mkdir -p /opt/android-studio && \
-    unzip /tmp/android-studio.zip -d /opt/android-studio && \
+   # mkdir -p /opt/android-studio && \
+    unzip /tmp/android-studio.zip -d /opt/ && \
     rm /tmp/android-studio.zip
 
 RUN chmod +x /opt/android-studio/bin/studio.sh && \
