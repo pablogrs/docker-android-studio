@@ -46,7 +46,7 @@ RUN echo 'Downloading Android Studio' && \
 
 RUN chmod +x /opt/android-studio/bin/studio.sh && \
     chown developer:developer -R /opt/android-studio && \
-    chown developer:developer /dev/kvm
+    chown developer:developer -R /dev
 
 ENV LANG C.UTF-8
 ENV DEBIAN_FRONTEND noninteractive
