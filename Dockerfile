@@ -6,7 +6,7 @@ RUN apt-get update && \
 RUN sed 's/main$/main universe/' -i /etc/apt/sources.list && \
     apt-get update && \
     apt-get install -qq -y --fix-missing sudo software-properties-common git libxext-dev libxrender-dev libxslt1.1 \
-        libxtst-dev libgtk2.0-0 libcanberra-gtk-module unzip wget && \
+        libxtst-dev libgtk2.0-0 libcanberra-gtk-module unzip wget xkb-data tzdata && \
     apt-get clean -qq -y && \
     apt-get autoclean -qq -y && \
     apt-get autoremove -qq -y && \
@@ -45,11 +45,13 @@ RUN echo 'Downloading Android Studio' && \
     rm /tmp/android-studio.zip
 
 RUN chmod +x /opt/android-studio/bin/studio.sh && \
-    chown developer:developer -R /opt/android-studio
+    chown developer:developer -R /opt/android-studio && \
+    chown developer:developer /dev/kvm
 
 ENV LANG C.UTF-8
 ENV DEBIAN_FRONTEND noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN true
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
 
+ENV QT_XKB_CONFIG_ROOT=/usr/share/X11/xkb
 CMD ["su", "-", "developer","/opt/android-studio/bin/studio.sh"]
